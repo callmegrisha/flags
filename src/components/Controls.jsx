@@ -24,19 +24,19 @@ const Wrapper = styled.div`
 `;
 
 export const Controls = ({ onSearch }) => {
-  const [search, setSearch] = useState('');
+  //const [search, setSearch] = useState('');
   const [region, setRegion] = useState('');
 
   useEffect(() => {
     const regionValue = region?.value || '';
 
-    onSearch(search, regionValue);
+    //onSearch(search, regionValue);
     // eslint-disable-next-line
-  }, [search, region]);
+  }, [, /*search*/ region]);
 
   return (
     <Wrapper>
-      <Search search={search} setSearch={setSearch} />
+      <Search /*search={search} setSearch={setSearch}*/ />
       <CustomSelect
         options={options}
         placeholder='Filter by Region'
