@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
 
 import { Container } from './Container';
+import { setTheme } from '../store/theme/theme-actions';
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -35,11 +37,12 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header = () => {
-  const [colorTheme, setColorTheme] = useState('light');
+  const dispatch = useDispatch();
+  const colorTheme = useSelector((state) => state.theme);
 
   const toggleColorTheme = () => {
     const themeCondition = colorTheme === 'light' ? 'dark' : 'light';
-    setColorTheme(themeCondition);
+    dispatch(setTheme(themeCondition));
   };
 
   useEffect(() => {
