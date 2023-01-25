@@ -6,7 +6,10 @@ import { IoArrowBack } from 'react-icons/io5';
 import { Button } from '../components/Button';
 import { Info } from '../components/Info';
 import { selectDetails } from '../store/details/details-selectors';
-import { loadCountryByName } from '../store/details/details-actions.js';
+import {
+  loadCountryByName,
+  clearDetails,
+} from '../store/details/details-actions.js';
 
 export const Details = () => {
   const { name } = useParams();
@@ -18,6 +21,10 @@ export const Details = () => {
 
   useEffect(() => {
     dispatch(loadCountryByName(name));
+
+    return () => {
+      dispatch(clearDetails());
+    };
   }, [name, dispatch]);
 
   return (

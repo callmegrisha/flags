@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { filterByCode } from '../config';
+import { selectNeighbors } from '../store/details/details-selectors';
+import { loadNeighborsByBorder } from '../store/details/details-actions';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -106,15 +108,14 @@ export const Info = (props) => {
     borders = [],
   } = props;
 
-  const [neighbors, setNeighbors] = useState([]);
+  const dispatch = useDispatch();
+  const neighbors = useSelector(selectNeighbors);
 
   useEffect(() => {
     if (borders.length) {
-      axios.get(filterByCode(borders)).then(({ data }) => {
-        setNeighbors(data.map((country) => country.name));
-      });
+      dispatch(loadNeighborsByBorder(borders));
     }
-  }, [borders]);
+  }, [borders, dispatch]);
 
   return (
     <Wrapper>
