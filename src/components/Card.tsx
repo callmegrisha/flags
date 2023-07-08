@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { CountryInfo } from 'types';
 
 const Wrapper = styled(Link)`
   display: block;
@@ -47,7 +48,11 @@ const CardListItem = styled.li`
   }
 `;
 
-export const Card = ({ img, name, info = [], href }) => {
+interface CardProps extends CountryInfo {
+  href: string,
+};
+
+export const Card = ({ img, name, info = [], href }: CardProps) => {
   return (
     <Wrapper to={href}>
       <CardImage src={img} alt={name} />

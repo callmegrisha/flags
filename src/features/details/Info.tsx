@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { useNeighbors } from './use-neighbors';
+import { Country } from 'types';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -89,7 +90,9 @@ const Tag = styled(Link)`
   text-decoration: none;
 `;
 
-export const Info = (props) => {
+interface InfoProps extends Country {}
+
+export const Info = (props: InfoProps) => {
   const {
     name,
     nativeName,

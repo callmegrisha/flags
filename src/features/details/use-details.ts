@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
   clearDetails,
   loadCountryByName,
-  selectDetails,
 } from './details-slice';
+import { selectDetails } from './details-selectors';
+import { useAppDispatch } from 'store';
 
-export const useDetails = (name = '') => {
-  const dispatch = useDispatch();
+export const useDetails = (name: string) => {
+  const dispatch = useAppDispatch();
   const details = useSelector(selectDetails);
   useEffect(() => {
     dispatch(loadCountryByName(name));

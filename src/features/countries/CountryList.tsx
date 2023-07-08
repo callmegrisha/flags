@@ -1,6 +1,8 @@
-import { List } from '../../components/List';
-import { Card } from '../../components/Card';
+
+import { List } from 'components/List';
 import { useCountries } from './use-countries';
+import { CountryInfo } from 'types';
+import { Card } from 'components/Card';
 
 export const CountryList = () => {
   const [countries, { status, error }] = useCountries();
@@ -12,7 +14,7 @@ export const CountryList = () => {
       {status === 'received' && (
         <List>
           {countries.map((country) => {
-            const countryInfo = {
+            const countryInfo: CountryInfo = {
               img: country.flags.svg,
               name: country.name,
               info: [

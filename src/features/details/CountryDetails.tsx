@@ -1,7 +1,11 @@
 import { Info } from './Info';
 import { useDetails } from './use-details';
 
-export const CountryDetails = ({ name = '' }) => {
+interface CountryDetailsProps {
+  name?: string
+};
+
+export const CountryDetails = ({ name = '' }: CountryDetailsProps) => {
   const { status, error, currentCountry } = useDetails(name);
   return (
     <>
